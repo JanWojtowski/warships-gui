@@ -8,14 +8,14 @@ import (
 )
 
 type GUI struct {
-	game      tl.Game
+	game      *tl.Game
 	drawables map[uuid.UUID][]tl.Drawable
 }
 
 // NewGUI returns a new GUI instance.
 // If debug is true, the GUI will print logs to the terminal
 // after exiting.
-func NewGUI(debug bool, game tl.Game) *GUI {
+func NewGUI(debug bool, game *tl.Game) *GUI {
 	game.Screen().SetFps(60)
 	game.SetDebugOn(debug)
 
