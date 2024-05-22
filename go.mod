@@ -1,22 +1,11 @@
-module github.com/grupawp/warships-gui/v2
+module github.com/JanWojtowski/warships-gui
 
-go 1.19
-
-retract (
-	v2.1.2
-	v2.1.1
-	// those versions contain incorrect import
-	v2.1.0
-)
+go 1.22.2
 
 require (
-	github.com/google/uuid v1.3.0
+	github.com/google/uuid v1.6.0
 	github.com/grupawp/termloop v0.0.0-20230531144437-277a1cbf4c14
-
+	github.com/nsf/termbox-go v1.1.1
 )
 
-require (
-	github.com/mattn/go-runewidth v0.0.14 // indirect
-	github.com/nsf/termbox-go v1.1.1 // indirect
-	github.com/rivo/uniseg v0.4.4 // indirect
-)
+require github.com/mattn/go-runewidth v0.0.9 // indirect
