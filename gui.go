@@ -3,20 +3,19 @@ package gui
 import (
 	"context"
 
-	tl "github.com/grupawp/termloop"
 	"github.com/google/uuid"
+	tl "github.com/grupawp/termloop"
 )
 
 type GUI struct {
-	game      *tl.Game
+	game      tl.Game
 	drawables map[uuid.UUID][]tl.Drawable
 }
 
 // NewGUI returns a new GUI instance.
 // If debug is true, the GUI will print logs to the terminal
 // after exiting.
-func NewGUI(debug bool) *GUI {
-	game := tl.NewGame()
+func NewGUI(debug bool, game tl.Game) *GUI {
 	game.Screen().SetFps(60)
 	game.SetDebugOn(debug)
 
@@ -28,7 +27,7 @@ func NewGUI(debug bool) *GUI {
 	return d
 }
 
-// Start displays the GUI and blocks until endKey is pressed or 
+// Start displays the GUI and blocks until endKey is pressed or
 // context is done. If endKey is nil it defaults to Ctrl+C.
 func (g *GUI) Start(ctx context.Context, endKey *tl.Key) {
 	if endKey != nil {

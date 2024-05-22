@@ -20,10 +20,11 @@ func (c Color) toAttr() tl.Attr {
 }
 
 var (
-	White = Color(termbox.ColorWhite)
-	Black = Color(termbox.ColorBlack)
-	Blue  = Color(termbox.ColorBlue)
-	Red   = Color(termbox.ColorRed)
-	Grey  = Color(termbox.ColorDarkGray)
-	Green = Color(termbox.ColorGreen)
+	White   = Color(termbox.ColorWhite)
+	Black   = Color(termbox.ColorBlack)
+	Blue    = Color(termbox.ColorBlue)
+	Red     = Color(termbox.ColorRed)
+	Grey    = Color(termbox.ColorDarkGray)
+	Green   = Color(termbox.ColorGreen)
+	Magenta = Color(termbox.ColorMagenta)
 )

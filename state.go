@@ -7,4 +7,5 @@ const (
 	Hit   State = "Hit"
 	Miss  State = "Miss"
 	Ship  State = "Ship"
+	Sunk  State = "Sunk"
 )

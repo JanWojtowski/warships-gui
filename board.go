@@ -4,8 +4,8 @@ import (
 	"context"
 	"fmt"
 
-	tl "github.com/grupawp/termloop"
 	"github.com/google/uuid"
+	tl "github.com/grupawp/termloop"
 )
 
 const (
@@ -39,10 +39,12 @@ type BoardConfig struct {
 	HitColor   Color
 	MissColor  Color
 	ShipColor  Color
+	SunkColor  Color
 	EmptyChar  byte
 	HitChar    byte
 	MissChar   byte
 	ShipChar   byte
+	SunkChar   byte
 }
 
 // NewBoardConfig returns a new config with default values.
@@ -54,10 +56,12 @@ func NewBoardConfig() *BoardConfig {
 		HitColor:   Red,
 		MissColor:  Grey,
 		ShipColor:  Green,
+		SunkColor:  Magenta,
 		EmptyChar:  '~',
 		HitChar:    'H',
 		MissChar:   'M',
 		ShipChar:   'S',
+		SunkChar:   'X',
 	}
 }
 
@@ -69,6 +73,8 @@ func (c *BoardConfig) getColor(state State) Color {
 		return c.MissColor
 	case Ship:
 		return c.ShipColor
+	case Sunk:
+		return c.SunkColor
 	default:
 		return c.EmptyColor
 	}
@@ -82,6 +88,8 @@ func (c *BoardConfig) getChar(state State) byte {
 		return c.MissChar
 	case Ship:
 		return c.ShipChar
+	case Sunk:
+		return c.SunkChar
 	default:
 		return c.EmptyChar
 	}
@@ -140,8 +148,8 @@ func NewBoard(x, y int, cfg *BoardConfig) *Board {
 	return b
 }
 
-// SetStates sets the states of the board. The states are represented 
-// as a 10x10 matrix, where the first index is the X coordinate and 
+// SetStates sets the states of the board. The states are represented
+// as a 10x10 matrix, where the first index is the X coordinate and
 // the second index is the Y coordinate.
 // Example: states[0][0] is the state of the field A1.
 func (b *Board) SetStates(states [10][10]State) {
@@ -169,7 +177,7 @@ func (b *Board) Drawables() []tl.Drawable {
 	return d
 }
 
-// Listen blocks until a field is clicked by the user and returns the 
+// Listen blocks until a field is clicked by the user and returns the
 // field as a string containing coordinates. Use context to control
 // cancelation and prevent listening indefinitely.
 func (b *Board) Listen(ctx context.Context) string {
